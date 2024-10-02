@@ -1,5 +1,5 @@
 {
-  "name": "realtor",
+  "name": "estatesphere",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.3.0",
     "axios": "^0.23.0",
     "framer-motion": "^4.1.17",
+    "lodash": "^4.17.21",
     "millify": "^4.0.0",
     "next": "11.1.2",
     "nprogress": "^0.2.0",
