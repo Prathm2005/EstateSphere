@@ -17,94 +17,87 @@ const Navbar = () => {
 
   return (
     <>
+      {/* Navbar */}
       <Flex 
         as="nav"
-        p='2' 
+        p='4' 
         borderBottom='1px' 
-        borderColor='gray.100' 
+        borderColor='gray.200' 
         alignItems='center' 
         position='fixed' 
         top='0' 
         width='100%' 
         bg='white' 
-        zIndex='10'
+        zIndex='1000'
+        boxShadow='sm'
       >
+        {/* Logo */}
         <Link href='/' passHref>
-          <Box fontSize='3xl' color='blue.400' fontWeight='bold' paddingRight='4' cursor="pointer">
+          <Flex alignItems="center" cursor="pointer">
             <Image src="/logo2.webp" alt="Logo" boxSize="50px" objectFit="cover" />
-          </Box>
+            <Text fontSize='xl' fontWeight='bold' color='blue.500' pl='2'>EstateSphere</Text>
+          </Flex>
         </Link>
-        <Box fontSize='3xl' color='blue.400' fontWeight='bold'>
-          <Link href='/' paddingLeft='2'>EstateSphere</Link>
-        </Box>
         <Spacer />
         
+        {/* Search Input */}
+        <Flex display={{ base: 'none', md: 'flex' }} alignItems="center">
+          <Input 
+            placeholder="Search for properties..." 
+            value={searchTerm} 
+            onChange={(e) => setSearchTerm(e.target.value)} 
+            width='250px'
+            mr='2' 
+          />
+          <Button colorScheme="blue" onClick={handleSearch}>Search</Button>
+        </Flex>
+
+        {/* Mobile Menu */}
         <Box display={{ base: 'block', md: 'none' }}>
           <Menu>
-            <MenuButton as={IconButton} icon={<FcMenu />} variant='outline' color='red.400' aria-label="Menu" />
+            <MenuButton as={IconButton} icon={<FcMenu />} variant='outline' aria-label="Menu" />
             <MenuList>
               <Link href='/' passHref>
-                <MenuItem icon={<FcMenu />}>Home</MenuItem>
+                <MenuItem>Home</MenuItem>
               </Link>
               <Link href='/search?purpose=for-sale' passHref>
-                <MenuItem icon={<FcMenu />}>Buy Property</MenuItem>
+                <MenuItem>Buy Property</MenuItem>
               </Link>
               <Link href='/search?purpose=for-rent' passHref>
-                <MenuItem icon={<FcMenu />}>Rent Property</MenuItem>
+                <MenuItem>Rent Property</MenuItem>
               </Link>
             </MenuList>
           </Menu>
         </Box>
 
-        <Flex display={{ base: 'none', md: 'flex' }} alignItems="center" cursor="pointer" marginRight='60px'>
+        {/* Desktop Links */}
+        <Flex display={{ base: 'none', md: 'flex' }} alignItems="center">
           <Link href='/' passHref>
-            <Box 
-              as="span" 
-              padding='2' 
-              _hover={{ color: 'blue.500' }}  
-              display="flex" 
-              alignItems="center"
-            >
-              <Text display="inline">Home</Text>
-            </Box>
+            <Text px='4' _hover={{ color: 'blue.500' }} cursor="pointer">Home</Text>
           </Link>
           <Link href='/search?purpose=for-sale' passHref>
-            <Box 
-              as="span" 
-              padding='2' 
-              _hover={{ color: 'blue.500' }} 
-              display="flex" 
-              alignItems="center"
-            >
-              <Text display="inline">Buy Property</Text>
-            </Box>
+            <Text px='4' _hover={{ color: 'blue.500' }} cursor="pointer">Buy Property</Text>
           </Link>
           <Link href='/search?purpose=for-rent' passHref>
-            <Box 
-              as="span" 
-              padding='2' 
-              _hover={{ color: 'blue.500' }} 
-              display="flex" 
-              alignItems="center"
-            >
-              <Text display="inline">Rent Property</Text>
-            </Box>
+            <Text px='4' _hover={{ color: 'blue.500' }} cursor="pointer">Rent Property</Text>
           </Link>
         </Flex>
       </Flex>
 
+      {/* Search Bar for Mobile */}
       <Flex 
         as="section" 
         p='4' 
         alignItems="center" 
         justifyContent="center" 
-        marginTop='60px'
+        marginTop='70px' 
+        display={{ base: 'flex', md: 'none' }}
       >
         <Input 
           placeholder="Search for properties..." 
           value={searchTerm} 
           onChange={(e) => setSearchTerm(e.target.value)} 
-          width={{ base: '70%', md: '40%' }} 
+          width='70%' 
           mr='2' 
         />
         <Button colorScheme="blue" onClick={handleSearch}>Search</Button>
