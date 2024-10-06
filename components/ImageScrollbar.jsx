@@ -12,9 +12,9 @@ const LeftArrow = () => {
       <Icon
         as={FaArrowAltCircleLeft}
         onClick={() => scrollPrev()}
-        fontSize='2xl'
+        fontSize={{ base: 'xl', md: '2xl' }}  // Adjust font size for mobile
         cursor='pointer'
-        d={['none','none','none','block']}
+        color='gray.600'
       />
     </Flex>
   );
@@ -28,19 +28,39 @@ const RightArrow = () => {
       <Icon
         as={FaArrowAltCircleRight}
         onClick={() => scrollNext()}
-        fontSize='2xl'
+        fontSize={{ base: 'xl', md: '2xl' }}  // Adjust font size for mobile
         cursor='pointer'
-        d={['none','none','none','block']}
-    />
+        color='gray.600'
+      />
     </Flex>
   );
 }
-export default function ImageSrollbar({ data }) {
+
+export default function ImageScrollbar({ data }) {
   return (
-    <ScrollMenu LeftArrow={LeftArrow} RightArrow={RightArrow} style={{ overflow: 'hidden' }} >
+    <ScrollMenu 
+      LeftArrow={LeftArrow} 
+      RightArrow={RightArrow} 
+      style={{ overflow: 'hidden' }}  // Hide overflow for cleaner look
+    >
       {data.map((item) => (
-        <Box width='910px' itemId={item.id} overflow='hidden' p='1'>
-          <Image placeholder="blur" blurDataURL={item.url} src={item.url} width={1000} height={500}  sizes="(max-width: 500px) 100px, (max-width: 1023px) 400px, 1000px" />
+        <Box 
+          key={item.id} 
+          itemId={item.id} 
+          p='1'
+          overflow='hidden' 
+          width={{ base: '80vw', sm: '60vw', md: '910px' }}  // Responsive widths for mobile, tablet, desktop
+        >
+          <Image 
+            placeholder="blur" 
+            blurDataURL={item.url} 
+            src={item.url} 
+            width={1000} 
+            height={500}  
+            objectFit='cover'
+            sizes="(max-width: 500px) 100px, (max-width: 1023px) 400px, 1000px" 
+            style={{ borderRadius: '10px' }}  // Add some border radius for styling
+          />
         </Box>
       ))}
     </ScrollMenu>
